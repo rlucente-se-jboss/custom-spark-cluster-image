@@ -1,6 +1,6 @@
 # How To Customize the Spark Cluster Image
 Here are the steps necessary to deploy a spark cluster using a
-customized Spark container image that itself contains additional
+customized Spark container image.  The image can contain additional
 jar files.
 
 ## Create a working directory
@@ -12,8 +12,10 @@ create an empty file called `mothra.jar`.
     cd example
     touch mothra.jar
 
+You can add other jar files here.
+
 ## Create a Dockerfile
-Create a text file named `Dockerfile` to customize the spark cluster
+Create a text file named `Dockerfile` to build a custom spark cluster
 image and make sure it contains the following content:
 
     FROM quay.io/jkremser/openshift-spark:2.3-latest
@@ -27,7 +29,7 @@ Login in as a developer to OpenShift and then build the custom image
 using your `Dockerfile`.  In the `oc login` command below, make
 sure that the `-u` and `-p` options have the correct username and
 password, respectively, for an unprivileged user on your OpenShift
-cluster.
+cluster.  In this example, the user is `developer`.
 
     oc login -u developer -p developer https://api.crc.testing:6443
     oc new-project spark-example
@@ -43,7 +45,7 @@ which container image is used to launch a spark cluster.
 
 ## Determine the spark image identity
 Use the following command to get the repository of the custom spark
-image we created with the additional jars.
+image we just created with the additional jars.
 
     oc get -o template is/custom-spark --template={{.status.dockerImageRepository}} && echo
 
@@ -52,13 +54,13 @@ Copy the result to the clipboard.  On my cluster, the image repository was `imag
 ## Edit the spark operator manifest to use the custom spark image
 Edit the file `manifest/operator.yaml` and change the value for the
 `DEFAULT_SPARK_CLUSTER_IMAGE` environment variable to the clipboard
-content.  On my system, the relevant lines looked like:
+content.  On my system, the relevant lines look like:
 
     - name: DEFAULT_SPARK_CLUSTER_IMAGE
       value: "image-registry.openshift-image-registry.svc:5000/spark-example/custom-spark:latest"
 
 ## Deploy the spark operator
-As a cluster administrator, deploy the spark operator into a new
+As a cluster administrator, deploy the spark operator into the same
 project.  In the `oc login` command below, make sure that the `-u`
 and `-p` options have the correct username and password, respectively,
 for a cluster administrator on your OpenShift cluster.
