@@ -40,7 +40,9 @@ cluster.  In this example, the user is `developer`.
 Wait for the build to complete.  You can check the status to see
 if the build is done using the command:
 
-    oc get pods
+    watch oc get pods
+
+When all pods are ready, use CTRL-C to exit the command.
 
 ## Clone the spark operator project
 Clone the spark operator github project that allows you to configure
@@ -76,6 +78,13 @@ for a cluster administrator on your OpenShift cluster.
     oc project spark-example
     oc apply -f manifest/operator.yaml    
 
+Wait for the operator to deploy.  You can check the status to see
+if the deployment is done using the command:
+
+    watch oc get pods
+
+When all pods are ready, use CTRL-C to exit the command.
+    
 ## Deploy your spark cluster using the custom spark image
 Edit the file `examples/cluster.yaml` and set the number of spark
 cluster workers and masters that you desire.  Deploy the cluster
@@ -86,9 +95,11 @@ using the following command:
 Wait for the spark cluster pods to start.  You can check the status
 to see if they're ready using the command:
 
-    oc get pods
+    watch oc get pods
 
-Once the pods are running for the spark cluster, you can expose the
+When all pods are ready, use CTRL-C to exit the command.
+
+After the pods are running for the spark cluster, you can expose the
 spark management user interface using the command:
 
     oc expose svc/my-spark-cluster-ui
