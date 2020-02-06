@@ -12,7 +12,7 @@ create an empty file called `mothra.jar`.
     cd example
     touch mothra.jar
 
-You can add other jar files to current directory so they'll be
+You can add other jar files to the current directory so they'll be
 packaged with the custom image in the next section.
 
 ## Create a Dockerfile
@@ -37,6 +37,11 @@ cluster.  In this example, the user is `developer`.
     oc new-build . --name custom-spark --strategy=docker
     oc start-build custom-spark --from-file=Dockerfile
     
+Wait for the build to complete.  You can check the status to see
+if the build is done using the command:
+
+    oc get pods
+
 ## Clone the spark operator project
 Clone the spark operator github project that allows you to configure
 which container image is used to launch a spark cluster.
