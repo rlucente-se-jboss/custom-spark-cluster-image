@@ -4,7 +4,7 @@ customized Spark container image.  The image can contain additional
 jar files.
 
 ## Create a working directory
-Create a working directory to build a customized spark container`
+Create a working directory to build a customized spark container
 image that contains the desired jar files.  For this example, we'll
 create an empty file called `mothra.jar`.
 
