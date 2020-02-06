@@ -51,7 +51,7 @@ which container image is used to launch a spark cluster.
 
 ## Determine the spark image identity
 Use the following command to get the repository of the custom spark
-image we just created with the additional jars.
+image we just created.
 
     oc get -o template is/custom-spark --template={{.status.dockerImageRepository}} && echo
 
@@ -93,7 +93,7 @@ spark management user interface using the command:
 
     oc expose svc/my-spark-cluster-ui
 
-You can get the URL to management UI via the command:
+You can get the URL to the management UI via the command:
 
     oc get route
 
