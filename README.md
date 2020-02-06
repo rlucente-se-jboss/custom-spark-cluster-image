@@ -12,7 +12,8 @@ create an empty file called `mothra.jar`.
     cd example
     touch mothra.jar
 
-You can add other jar files here.
+You can add other jar files to current directory so they'll be
+packaged with the custom image in the next section.
 
 ## Create a Dockerfile
 Create a text file named `Dockerfile` to build a custom spark cluster
