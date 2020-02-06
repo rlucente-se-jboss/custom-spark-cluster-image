@@ -35,7 +35,7 @@ cluster.  In this example, the user is `developer`.
     oc login -u developer -p developer https://api.crc.testing:6443
     oc new-project spark-example
     oc new-build . --name custom-spark --strategy=docker
-    oc start-build custom-spark --from-file=Dockerfile
+    oc start-build custom-spark --from-dir=.
     
 Wait for the build to complete.  You can check the status to see
 if the build is done using the command:
