@@ -42,7 +42,7 @@ if the build is done using the command:
 
     watch oc get pods
 
-When all pods are ready, use CTRL-C to exit the command.
+When the build is completed, use CTRL-C to exit the command.
 
 ## Clone the spark operator project
 Clone the spark operator github project that allows you to configure
